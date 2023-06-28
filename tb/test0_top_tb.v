@@ -20,7 +20,7 @@ module top_tb(
 
 	 
 	 force u_top.m_ram_raddr = 32'h0;
-	 force u_top.m_ram_ren = 1'b0;
+	 force u_top.m_ram_ren = 1'b1;
 
 	 force u_top.m_ram_waddr = 32'h0;
 	 force u_top.m_ram_wdata = 32'h0;

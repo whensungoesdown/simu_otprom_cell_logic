@@ -92,13 +92,13 @@ module agent(
 	   .dout  (s_ram_raddr),
 	   .in0   (`BUS_WIDTH'h10),
 	   .in1   (m_ram_raddr),
-	   .sel   (timing_1));
+	   .sel   (timing_0));
 
    dp_mux2es #(1) mux_s_ram_ren (
 	   .dout  (s_ram_ren),
 	   .in0   (1'b1),
 	   .in1   (m_ram_ren),
-	   .sel   (timing_1));
+	   .sel   (timing_0));
 
 
 
@@ -107,7 +107,7 @@ module agent(
    assign otprom_secure_debug_disable = s_ram_rdata[0];
 
    wire sec_en;
-   assign sec_en = ~timing_2;
+   assign sec_en = ~timing_1;
 
    dffrle_s #(1) secure_debug_disable_reg (
       .din   (otprom_secure_debug_disable),
