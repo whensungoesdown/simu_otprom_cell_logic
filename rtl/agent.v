@@ -36,48 +36,48 @@ module agent(
    // reset to 0
    //
    // resetn   : ____----
-   // timing_0 : _____---
-   // timing_1 : ______--
+   // timing0n : _____---
+   // timing1n : ______--
    //
    // suppose ram need 1 cycle to read
-   // read ram at timing_0, store rdata to reg at timing_1
+   // read ram at timing0n, store rdata to reg at timing1n
    //
-   wire timing_0;
-   wire timing_0_nxt;
+   wire timing0n;
+   wire timing0n_nxt;
 
-   assign timing_0_nxt = resetn | timing_0;
+   assign timing0n_nxt = resetn | timing0n;
 
-   dffrl_s #(1) timing_0_reg (
-      .din   (timing_0_nxt),
+   dffrl_s #(1) timing0n_reg (
+      .din   (timing0n_nxt),
       .clk   (clk),
       .rst_l (resetn),
-      .q     (timing_0), 
+      .q     (timing0n), 
       .se(), .si(), .so());
 
 
-   wire timing_1;
-   wire timing_1_nxt;
+   wire timing1n;
+   wire timing1n_nxt;
 
-   assign timing_1_nxt = timing_0 | timing_1;
+   assign timing1n_nxt = timing0n | timing1n;
 
-   dffrl_s #(1) timing_1_reg (
-      .din   (timing_1_nxt),
+   dffrl_s #(1) timing1n_reg (
+      .din   (timing1n_nxt),
       .clk   (clk),
       .rst_l (resetn),
-      .q     (timing_1), 
+      .q     (timing1n), 
       .se(), .si(), .so());
 
 
-   wire timing_2;
-   wire timing_2_nxt;
+   wire timing2n;
+   wire timing2n_nxt;
 
-   assign timing_2_nxt = timing_1 | timing_2;
+   assign timing2n_nxt = timing1n | timing2n;
 
-   dffrl_s #(1) timing_2_reg (
-      .din   (timing_2_nxt),
+   dffrl_s #(1) timing2n_reg (
+      .din   (timing2n_nxt),
       .clk   (clk),
       .rst_l (resetn),
-      .q     (timing_2), 
+      .q     (timing2n), 
       .se(), .si(), .so());
 
 
@@ -92,13 +92,13 @@ module agent(
 	   .dout  (s_ram_raddr),
 	   .in0   (`BUS_WIDTH'h10),
 	   .in1   (m_ram_raddr),
-	   .sel   (timing_0));
+	   .sel   (timing0n));
 
    dp_mux2es #(1) mux_s_ram_ren (
 	   .dout  (s_ram_ren),
 	   .in0   (1'b1),
 	   .in1   (m_ram_ren),
-	   .sel   (timing_0));
+	   .sel   (timing0n));
 
 
 
@@ -107,7 +107,7 @@ module agent(
    assign otprom_secure_debug_disable = s_ram_rdata[0];
 
    wire sec_en;
-   assign sec_en = ~timing_1;
+   assign sec_en = ~timing1n;
 
    dffrle_s #(1) secure_debug_disable_reg (
       .din   (otprom_secure_debug_disable),
