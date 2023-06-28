@@ -23,3 +23,4 @@ sram的read latency是1 cycle (根据实际的read latency确定)。
 读出的数据在timing1n（reset后的第二个cycle上升沿）写入寄存器，此后用作控制信号。
 
 
+![screenshot0](https://github.com/whensungoesdown/whensungoesdown.github.io/raw/main/_posts/2023-06-28-0.png)
