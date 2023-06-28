@@ -2,7 +2,7 @@
 
 Right after reset, agent reads out otprom word and stored in register, then use it as signals. The otprom is simulated with a sram
 
-## The problem and Goal
+## The Problem and the Goal
 
 
 现在的问题是，想让otprom里的一个bit直接控制某些逻辑，比如控制某个模块的clock gate。otprom不能从里面直接引出这个bit，而是需要通过接口先读出来，这样就需要跑固件代码。
@@ -54,10 +54,12 @@ Right after reset, agent reads out otprom word and stored in register, then use 
       );
 `````
 
-用resetn信号建立几个信号，每个延后1个cycle，例如timing0n,timing1n
+
+In the agent module, 用resetn信号建立几个信号，每个延后1个cycle，例如timing0n,timing1n
 
 
 `````verilog
+agent.v
 
    // timing signal , sticky
    // reset to 0
