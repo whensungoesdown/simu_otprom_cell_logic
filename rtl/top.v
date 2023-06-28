@@ -24,29 +24,29 @@ module top(
    wire [`DATA_WIDTH-1:0]    s_ram_wdata;
    wire [`DATA_WIDTH/8-1:0]  s_ram_wen;
 
-   wire                      secure_debug_enable;
+   wire                      secure_debug_disable;
 
    
 
    agent u_agent(
-      .clk                  (clk                ),
-      .resetn               (resetn             ),
+      .clk                  (clk                 ),
+      .resetn               (resetn              ),
 
-      .m_ram_raddr          (m_ram_raddr        ),
-      .m_ram_rdata          (m_ram_rdata        ),
-      .m_ram_ren            (m_ram_ren          ),
-      .m_ram_waddr          (m_ram_waddr        ),
-      .m_ram_wdata          (m_ram_wdata        ),
-      .m_ram_wen            (m_ram_wen          ),
+      .m_ram_raddr          (m_ram_raddr         ),
+      .m_ram_rdata          (m_ram_rdata         ),
+      .m_ram_ren            (m_ram_ren           ),
+      .m_ram_waddr          (m_ram_waddr         ),
+      .m_ram_wdata          (m_ram_wdata         ),
+      .m_ram_wen            (m_ram_wen           ),
 
-      .s_ram_raddr          (s_ram_raddr        ),
-      .s_ram_rdata          (s_ram_rdata        ),
-      .s_ram_ren            (s_ram_ren          ),
-      .s_ram_waddr          (s_ram_waddr        ),
-      .s_ram_wdata          (s_ram_wdata        ),
-      .s_ram_wen            (s_ram_wen          ),
+      .s_ram_raddr          (s_ram_raddr         ),
+      .s_ram_rdata          (s_ram_rdata         ),
+      .s_ram_ren            (s_ram_ren           ),
+      .s_ram_waddr          (s_ram_waddr         ),
+      .s_ram_wdata          (s_ram_wdata         ),
+      .s_ram_wen            (s_ram_wen           ),
 
-      .secure_debug_enable  (secure_debug_enable)
+      .secure_debug_disable (secure_debug_disable)
    );
 
    
