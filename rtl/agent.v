@@ -68,25 +68,10 @@ module agent(
       .se(), .si(), .so());
 
 
-   wire timing2n;
-   wire timing2n_nxt;
 
-   assign timing2n_nxt = timing1n | timing2n;
-
-   dffrl_s #(1) timing2n_reg (
-      .din   (timing2n_nxt),
-      .clk   (clk),
-      .rst_l (resetn),
-      .q     (timing2n), 
-      .se(), .si(), .so());
-
-
-   // 
    //
+   // s_ram_raddr and s_ram_ren muxed to 0x10 before timing0n
    //
-   //wire [`BUS_WIDTH -1:0]    once_ram_raddr;
-   //wire                      once_ram_ren  ;
-   
 
    dp_mux2es #(`BUS_WIDTH) mux_s_ram_raddr (
 	   .dout  (s_ram_raddr),
@@ -102,7 +87,7 @@ module agent(
 
 
 
-   // suppose otprom_secure_debug_disable bit is at addr xxx, bit 0
+   // suppose otprom_secure_debug_disable bit is at addr 0x10, bit 0
    wire otprom_secure_debug_disable;
    assign otprom_secure_debug_disable = s_ram_rdata[0];
 
